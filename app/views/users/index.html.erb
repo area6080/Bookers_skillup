@@ -2,19 +2,37 @@
 
 <div>
   <h2>User info</h2>
-  image
+  <%= image_tag @user.get_image %>
+  <!--<%= image_tag @user.get_profile_image(100,100) %>-->
   <table>
-    name
-    introduction
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td>introduction</td>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </tbody>
   </table>
-  ボタン
+
+  <% if @user == current_user %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+
 </div>
 
 <div>
-  <h2>newbook</h2>
-  title
-  opinion
-  create
+  <h2>New Book</h2>
+
+  <%= form_with model: @book do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_field :introduction %>
+  <%= f.submit 'Create Book' %>
+<% end %>
 </div>
 
 <div class="main-content">
