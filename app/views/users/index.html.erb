@@ -2,8 +2,12 @@
 
 <div>
   <h2>User info</h2>
-  <%= image_tag @user.get_image %>
-  <!--<%= image_tag @user.get_profile_image(100,100) %>-->
+    <% if @user.image.attached? %>
+      <%= image_tag @user.get_image, size: "100x100" %>
+    <% else %>
+      <%= image_tag 'default-image-0.jpg', size: "100x100" %>
+    <% end %>
+
   <table>
     <tbody>
       <tr>
@@ -35,32 +39,26 @@
 <% end %>
 </div>
 
-<div class="main-content">
-  <h1 class="headline">Books</h1>
+<div>
+  <h1>Books</h1>
 
   <table>
-
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Body</th>
-        <th></th>
-        <th></th>
+        <th>Image</th>
+        <th>Name</th>
         <th></th>
       </tr>
     </thead>
-
     <tbody>
-      <% @books.each do |book| %>
+      <% @users.each do |user| %>
       <tr>
         いめーじ
-        <td><%= book.title %></td>
-        <td><%= book.body %></td>
-        <td><%= link_to "Show", book_path(book.id) %></td>
+        <td><%= user.name %></td>
+        <td><%= user.introduction %></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
       </tr>
       <% end %>
     </tbody>
-
   </table>
-
 </div>
