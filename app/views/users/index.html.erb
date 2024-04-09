@@ -1,64 +1,72 @@
-<h1>Users#index</h1>
-
-<div>
-  <h2>User info</h2>
-    <% if @user.image.attached? %>
-      <%= image_tag @user.get_image, size: "100x100" %>
-    <% else %>
-      <%= image_tag 'default-image-0.jpg', size: "100x100" %>
-    <% end %>
-
-  <table>
-    <tbody>
-      <tr>
-        <td>name</td>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <td>introduction</td>
-        <td><%= @user.introduction %></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <% if @user == current_user %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-
-</div>
-
-<div>
-  <h2>New Book</h2>
-
-  <%= form_with model: @book do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_field :introduction %>
-  <%= f.submit 'Create Book' %>
-<% end %>
-</div>
-
-<div>
-  <h1>Books</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-      <tr>
-        いめーじ
-        <td><%= user.name %></td>
-        <td><%= user.introduction %></td>
-        <td><%= link_to "Show", user_path(user.id) %></td>
-      </tr>
+<div class="container mt-3">
+  <div class="row no-gutters">
+    <div class="col-md-3">
+      
+      <h2>User info</h2>
+        <% if @user.image.attached? %>
+          <%= image_tag @user.get_image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'default-image-0.jpg', size: "100x100" %>
+        <% end %>
+    
+      <table>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>introduction</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <% if @user == current_user %>
+        <%= link_to edit_user_path(@user) do %>
+        <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(@user) do %>
+        <i class="fa-solid fa-user-gear"></i>
+        <% end %>
       <% end %>
-    </tbody>
-  </table>
+      
+      <div>
+        <h2>New Book</h2>
+      
+        <%= form_with model: @book do |f| %>
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+        <h4>Opinion</h4>
+        <%= f.text_area :introduction %>
+        <br>
+        <%= f.submit 'Create Book' %>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h1>Users</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_image, size: "100x100" %></td>
+            <td><%= user.name %></td>
+            <td><%= user.introduction %></td>
+            <td><%= link_to "Show", user_path(user.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
 </div>
