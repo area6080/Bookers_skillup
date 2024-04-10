@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about' ,as: "about"
   resources :users do
-    resources :books
+    resources :books, shallow: true
   end
 
 

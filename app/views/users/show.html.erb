@@ -18,13 +18,13 @@
           <tr>
             <td>
               <% if book.user.image.attached? %>
-                <%= image_tag bookuser.get_image, size: "100x100" %>
+                <%= image_tag book.user.get_image, size: "100x100" %>
               <% else %>
                 <%= image_tag 'default-image-0.jpg', size: "100x100" %>
               <% end %>
             </td>
-            <td><%= link_to book_path(book.id)  %></td>
-            <td><%= book.introduction %></td>
+            <td><%= link_to user_book_path(@user.id)  %></td>
+            <td><%= book.body %></td>
           </tr>
           <% end %>
         </tbody>
