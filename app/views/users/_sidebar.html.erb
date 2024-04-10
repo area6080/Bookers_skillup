@@ -29,7 +29,7 @@
 <div>
   <h2 class="mt-3">New Book</h2>
 
-  <%= form_with url:user_books_path, model: @book do |f| %>
+  <%= form_with url:user_books_path(@user.id), model: @book do |f| %>
   <p>Title</p>
   <%= f.text_field :title,class: "form-control" %>
   <p>Opinion</p>
