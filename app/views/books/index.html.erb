@@ -1,32 +1,38 @@
-<h1>Books2#index</h1>
-
-<div class="main-content">
-  <h1 class="headline">Books</h1>
-
-  <table>
-
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Body</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @books.each do |book| %>
-      <tr>
-        <td><%= book.title %></td>
-        <td><%= book.body %></td>
-        <td><%= link_to "Show", book_path(book.id) %></td>
-        <td><%= link_to "Edit", edit_book_path(book.id) %></td>
-        <td><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
-      </tr>
-      <% end %>
-    </tbody>
-
-  </table>
-
+<div class="container mt-3">
+  <div class="row no-gutters">
+    <div class="col-md-3">
+      <%= render 'sidebar', user: @user, book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <% @users.each do |user| %>
+            <% user.books.each do |book| %>
+              <tr>
+                <td>
+                  <% if book.user.image.attached? %>
+                    <%= image_tag book.user.get_image, size: "100x100" %>
+                  <% else %>
+                    <%= image_tag 'default-image-0.jpg', size: "100x100" %>
+                  <% end %>
+                </td>
+                <td><%= link_to book.title, book_path(book.id) %></td>
+                <td><%= book.body %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
