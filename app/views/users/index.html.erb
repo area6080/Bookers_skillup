@@ -1,53 +1,11 @@
 <div class="container mt-3">
   <div class="row no-gutters">
     <div class="col-md-3">
-      
-      <h2>User info</h2>
-        <% if @user.image.attached? %>
-          <%= image_tag @user.get_image, size: "100x100" %>
-        <% else %>
-          <%= image_tag 'default-image-0.jpg', size: "100x100" %>
-        <% end %>
-    
-      <table>
-        <tbody>
-          <tr>
-            <td>name</td>
-            <td><%= @user.name %></td>
-          </tr>
-          <tr>
-            <td>introduction</td>
-            <td><%= @user.introduction %></td>
-          </tr>
-        </tbody>
-      </table>
-    
-      <% if @user == current_user %>
-        <%= link_to edit_user_path(@user) do %>
-        <i class="fa-solid fa-user-gear"></i>
-        <% end %>
-      <% else %>
-        <%= link_to user_path(@user) do %>
-        <i class="fa-solid fa-user-gear"></i>
-        <% end %>
-      <% end %>
-      
-      <div>
-        <h2>New Book</h2>
-      
-        <%= form_with model: @book do |f| %>
-        <h4>Title</h4>
-        <%= f.text_field :title %>
-        <h4>Opinion</h4>
-        <%= f.text_area :introduction %>
-        <br>
-        <%= f.submit 'Create Book' %>
-      <% end %>
-      </div>
+      <%= render 'sidebar', user: @user, book: @book %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h1>Users</h1>
-      <table>
+      <h2>Users</h2>
+      <table class="table">
         <thead>
           <tr>
             <th>Image</th>

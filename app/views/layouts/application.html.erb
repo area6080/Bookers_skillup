@@ -54,7 +54,7 @@
               <% else %>
               <li class="nav-item">
                 <%= link_to about_path,class: 'nav-link text-light' do %>
-                <i class="fa-solid fa-bookmark"></i>
+                <i class="fa-solid fa-link"></i>
                 About
                 <% end %>
               </li>
@@ -76,8 +76,10 @@
         </div>
       </nav>
     </header>
-
-    <%= yield %>
+    
+    <main>
+      <%= yield %>
+    </main>
 
     <footer>
       <div class="container-fluid mt-5">
@@ -88,5 +90,6 @@
         </div>
       </div>
     </footer>
+    
   </body>
 </html>
