@@ -1,22 +1,22 @@
 <div class="container mt-3">
   <div class="row no-gutters">
     <div class="col-md-3">
-      <%= render 'users/sidebar', user: @user, book: @book %>
+      <%= render 'users/sidebar', user: @user %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Book Detail</h2>
-      
+
       <table class="table">
         <tbody>
           <tr>
             <td>
-              <% if @book.user.image.attached? %>
-                <%= image_tag @book.user.get_image, size: "100x100" %>
+              <% if @user.image.attached? %>
+                <%= image_tag @user.get_image, size: "100x100" %>
               <% else %>
                 <%= image_tag 'default-image-0.jpg', size: "100x100" %>
               <% end %>
               <br>
-              <%= link_to @book.user.name, users_path(@user)%>
+              <%= link_to @user.name, users_path(@user)%>
             </td>
             <td><%= link_to @book.title, book_path(@book) %></td>
             <td><%= @book.body %></td>
@@ -26,7 +26,7 @@
             <% end %>
           </tr>
         </tbody>
-        
+
 
       </table>
     </div>
