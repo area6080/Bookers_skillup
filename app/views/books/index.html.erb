@@ -1,8 +1,17 @@
-<p><%= flash[:notice] %></p>
 <div class="container mt-3">
+  
+  <% if flash[:error].present? %>
+      <h3><%= flash[:error].count %> error prohibited this obj from being saved:</h3>
+      <ul>
+        <% flash[:error].each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
   <div class="row no-gutters">
     <div class="col-md-3">
-      <%= render 'users/sidebar', user: @user, book: @book %>
+      <%= render 'users/sidebar', user: current_user %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
