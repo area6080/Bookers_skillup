@@ -18,16 +18,11 @@
   </tbody>
 </table>
 
-<% if user == current_user %>
-  <a href="/users/<%= user.id %>/edit" class="btn btn-outline-secondary btn-block" role="button">
-    <i class="fa-solid fa-user-gear"></i></a>
-<% else %>
-  <a href="/users/<%= current_user.id %>" class="btn btn-outline-secondary btn-block" role="button">
-    <i class="fa-solid fa-user-gear"></i></a>
-<% end %>
+<a href="/users/<%= user.id %>/edit" class="btn btn-outline-secondary btn-block" role="button">
+  <i class="fa-solid fa-user-gear"></i></a>
 
 <div>
-  <h2 class="mt-3">New Book</h2>
+  <h2 class="mt-3">New book</h2>
 
   <%= form_with  model: Book.new do |f| %>
   <p>Title</p>

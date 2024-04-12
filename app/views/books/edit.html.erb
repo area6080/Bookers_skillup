@@ -1,9 +1,7 @@
-
 <div class="container">
   <div class="row mt-3">
     <div class="col-md-6 mt-2 mx-auto">
       <h2>Editing Book</h2>
-
       <% if @book.errors.any? %>
         <h3><%= @book.errors.count %>error prohibited this obj from being saved:</h3>
         <ul>
@@ -21,8 +19,8 @@
         <%= f.submit 'Update Book', class:'btn btn-success' %>
       <% end %>
       
-    <%= link_to "Show", book_path(@book.id) %> |
-    <%= link_to "Back", books_path %>
+      <%= link_to "Show", book_path(@book.id) %> |
+      <%= link_to "Back", books_path %>
     </div>
   </div>
 </div>

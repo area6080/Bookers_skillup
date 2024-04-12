@@ -4,31 +4,31 @@
       <%= render 'users/sidebar', user: @user %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h2>Book Detail</h2>
-
+      <h2>Book detail</h2>
       <table class="table">
+        <thead>
+        </thead>
         <tbody>
           <tr>
             <td>
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.get_profile_image, size: "100x100" %>
+              　<%= link_to user_path(@user.id) do %>
+                  <%= image_tag(@user.get_profile_image, size: "100x100") %><br>
+                  <%= @user.name %>
+              　<% end %>
               <% else %>
-                <%= image_tag 'default-image-0.jpg', size: "100x100" %>
+                <%= link_to image_tag("default-image-0.jpg", size: "100x100"), user_path(@user.id) %>
               <% end %>
-              <br>
-              <%= link_to @user.name, users_path(@user)%>
             </td>
             <td><%= link_to @book.title, book_path(@book) %></td>
             <td><%= @book.body %></td>
-            
+
             <% if @book.user == current_user %>
             <td><%= link_to "Edit", edit_book_path(@book), class:'btn btn-sm btn-success' %></td>
             <td><%= link_to "Destroy",book_path(@book), method: :delete, class:'btn btn-sm btn-danger', "data-confirm" => "本当に消去しますか?" %></td>
             <% end %>
           </tr>
         </tbody>
-
-
       </table>
     </div>
   </div>
