@@ -15,6 +15,14 @@
       <td>introduction</td>
       <td><%= user.introduction %></td>
     </tr>
+    <tr>
+      <td>follows</td>
+      <td><%= user.relationships.follower_id %></td>
+    </tr>
+    <tr>
+      <td>followers</td>
+      <td><%= user.relationships.followed_id %></td>
+    </tr>
   </tbody>
 </table>
 
