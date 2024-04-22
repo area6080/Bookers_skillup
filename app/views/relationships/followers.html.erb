@@ -1,0 +1,6 @@
+<h2>FollowerUsers</h2>
+<% if @users.exists? %>
+  <%= render 'users/users',users: @users %>
+<% else %>
+  <p>ユーザーがいないですね。</p>
+<% end %>

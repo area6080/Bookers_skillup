@@ -7,27 +7,7 @@
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Users</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_profile_image, size: "70x70" %></td>
-            <td><%= user.name %></td>
-            <td>フォロー数:<span><%= user.relationships.follower_id %></span></td>
-            <td>フォロワー数:<span><%= user.relationships.followed_id %></span></td>
-            <td><%= render 'follow', user: user %></td>
-            <td><%= link_to "Show", user_path(user.id) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'users',users: @users %>
     </div>
   </div>
 </div>
