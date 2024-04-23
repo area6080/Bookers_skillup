@@ -1,0 +1,9 @@
+
+<h2>"<%= @range %>s" search for "<%= @word %>"</h2>
+
+  <% if @range == "User" %>
+  <%= render 'users/users',users: @users %>
+  <% else %>
+  <%= render 'books/books', users: @users %>
+  <% end %>
+</table>
