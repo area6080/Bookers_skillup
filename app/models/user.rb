@@ -4,14 +4,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
-  
+
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :active_relationships, source: :followed
+#@user.followingsとすることでそのユーザーがフォローしている人の一覧を表示することができる
+# 自分がフォローしてる(followed)人のID(follower_id)を取ってくる
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
  #@user.followingsとすることでそのユーザーがフォローしている人の一覧を表示することができる
  
@@ -25,15 +27,15 @@ class User < ApplicationRecord
     end
     profile_image
   end
-  
+
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
-  
+
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
-  
+
   def following?(user)
     followings.include?(user)
   end
