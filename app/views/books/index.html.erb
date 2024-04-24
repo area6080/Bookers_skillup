@@ -7,14 +7,16 @@
         <% end %>
       </ul>
   <% end %>
-
+  <div class="d-flex justify-content-center my-1">
+    <%= render 'searches/search' %>
+  </div>
   <div class="row no-gutters">
     <div class="col-md-3">
       <%= render 'users/sidebar', user: current_user %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <%= render 'books/books', users: @users %>
+      <%= render 'books/books', books: @books %>
     </div>
   </div>
 </div>

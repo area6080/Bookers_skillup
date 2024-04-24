@@ -1,0 +1,16 @@
+<div class="container mt-3">
+  <div class="d-flex justify-content-center my-1">
+    <%= render 'searches/search' %>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <h3><%= @model %>s search for <%= @word %></h3>
+      <% if @model == "User" %>
+        <%= render 'users/users',users: @result %>
+      <% else %>
+        <%= render 'books/books',books: @result %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
