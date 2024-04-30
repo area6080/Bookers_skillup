@@ -30,7 +30,7 @@
   <a href="/users/<%= user.id %>/edit" class="btn btn-outline-secondary btn-block" role="button">
     <i class="fa-solid fa-user-gear"></i></a>
 <% else %>
-  <%= render 'follow', user: user %>
+  <%= render 'users/follow', user: user %>
 <% end %>
 
 
