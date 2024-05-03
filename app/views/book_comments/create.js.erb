@@ -1,1 +1,4 @@
- $(".fav-btn").html("<%= j(render 'books/favorite-btn', book: @book) %>");
+$("#book_<%= @book.id %> .comments-count").html("コメント数: <%= @book.book_comments.count %>");
+$(".book_comments").html("<%= j(render 'book_comments/index', book: @book) %>");
+<!--.book_commentsはclassなのでcssのようなセレクタの指定にする-->
+$("#book_comment_comment").val("");

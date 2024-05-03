@@ -9,8 +9,7 @@
         <thead>
         </thead>
         <tbody>
-          <tr id="book_<%= @book.id %>"></tr>
-          <tr>
+          <tr id="book_<%= @book.id %>">
             <td>
               <%= link_to(@book.user) do %>
               <%= image_tag @book.user.get_profile_image, size:'70x70' %>
@@ -18,8 +17,8 @@
             </td>
             <td><%= link_to @book.title, book_path(@book) %></td>
             <td><%= @book.body %></td>
-            <td><%= render 'books/favorite-btn', book: @book %></td>
-            <td>コメント数：<%= @book.book_comments.count %></td>
+            <td class="favorite-btn"><%= render 'books/favorite-btn', book: @book %></td>
+            <td class="comments-count">コメント数：<%= @book.book_comments.count %></td>
 
             <% if @book.user == current_user %>
             <td><%= link_to "Edit", edit_book_path(@book), class:'btn btn-sm btn-success' %></td>
@@ -29,26 +28,19 @@
         </tbody>
       </table>
       
-      <table>
+      <table class="book_comments">
         <tbody>
-          <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <td><%= image_tag(book_comment.user.get_profile_image, size: "70x70") %><br>
-            <%= book_comment.user.name %></td>
-            <td><%= book_comment.comment %></td>
-            <% if book_comment.user == current_user %>
-            <td><%= link_to "Destroy",book_book_comment_path(book_comment.book, book_comment), method: :delete, class:'btn btn-sm btn-danger', "data-confirm" => "本当に消去しますか?" %></td>
-            <% end %>
-          </tr>
-          <% end %>
+          <%= render 'book_comments/index', book: @book %>
         </tbody>
       </table>
 
       <div>
-        <%= form_with model: [@book, @book_comment] do |f| %>
+        <%= form_with model: [@book, @book_comment], local: false do |f| %>
           <%= f.text_area :comment, rows: '3',class: "form-control" %>
-          <%= f.submit "送信", class:'btn btn-sm mt-1 btn-success' %>
+          <%= f.submit "Send Message", class:'btn btn-sm mt-1 btn-success' %>
         <% end %>
+<!--form_withを用いた際、input要素（入力エリア）には自動でモデル名_カラム名というidが付与されます-->
+<!--モデル名がbook_comment、カラム名がcommentなので、book_comment_commentというidになります。-->
       </div>
     </div>
   </div>

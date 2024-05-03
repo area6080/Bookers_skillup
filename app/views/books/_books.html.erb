@@ -10,8 +10,7 @@
 
   <tbody>
     <% books.each do |book| %>
-      <tr id="book_<%= book.id %>"></tr>
-      <tr>
+      <tr id="book_<%= book.id %>">
         <td>
           <%= link_to(book.user) do %>
           <%= image_tag book.user.get_profile_image, size:'70x70' %>
