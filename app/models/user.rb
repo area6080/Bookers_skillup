@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
 
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'default-image-0.jpg'
+    (profile_image.attached?)? profile_image : 'default-image-0.jpg'
   end
 
   def follow(user)
@@ -47,6 +47,17 @@ class User < ApplicationRecord
     else search == "partial_match"
       User.where("name LIKE?","%#{word}%")
     end
+  end
+  
+  GUEST_USER_EMAIL = "guest@example.com"
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
 end
 
