@@ -1,1 +1,9 @@
-@use '~bootstrap/scss/bootstrap';
+@use '~bootstrap/scss/bootstrap' with (
+    $primary: #93c9ff,
+    $warning: #93ff93,
+);
+// !defaultフラグが使用されている変数のみを変更できる
+
+// .btn-super-success{
+//     color: orange;
+// }
